@@ -8,4 +8,7 @@ package cn.flink.demo;
  *          nc -lk 9999  开启一个socket服务
  */
 public class WordCount {
+    public static void main(String[] args) {
+
+    }
 }
