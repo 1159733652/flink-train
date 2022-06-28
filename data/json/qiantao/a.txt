@@ -1,0 +1,3 @@
+{"id":10,"name":{"nick":"tiedan1","formal":"doit edu1"},"age":18,"gender":"male"}
+{"id":20,"name":{"nick":"tiedan2","formal":"doit edu2"},"age":18,"gender":"male"}
+{"id":30,"name":{"nick":"tiedan3","formal":"doit edu3"},"age":18,"gender":"male"}
