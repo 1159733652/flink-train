@@ -18,7 +18,6 @@
         <maven.compiler.target>8</maven.compiler.target>
         <flink.version>1.14.4</flink.version>
         <scala.binary.version>2.12</scala.binary.version>
-        <scala.binary.version>2.12</scala.binary.version>
         <lombok.version>1.18.24</lombok.version>
         <junit.version>4.13.2</junit.version>
         <kafka.version>2.2.1</kafka.version>
