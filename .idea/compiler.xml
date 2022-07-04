@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="flink_sql" />
         <module name="flink_demo" />
+        <module name="util_function" />
       </profile>
     </annotationProcessing>
   </component>

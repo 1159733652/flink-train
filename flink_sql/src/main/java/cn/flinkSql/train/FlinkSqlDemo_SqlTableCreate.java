@@ -17,7 +17,7 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
  * @DESC sqltable 创建各种表对象
  * 带sql表名的表创建  各种方式
  */
-public class FlinkSqlDemo2_SqlTableCreate {
+public class FlinkSqlDemo_SqlTableCreate {
     public static void main(String[] args) {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setRuntimeMode(RuntimeExecutionMode.STREAMING);

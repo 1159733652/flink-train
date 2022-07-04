@@ -9,7 +9,7 @@ import org.apache.flink.table.catalog.hive.HiveCatalog;
  * @Date 2022/6/28
  * @DESC    catalog 详细
  */
-public class FlinkSqlDemo2_CatalogDemo {
+public class FlinkSqlDemo_CatalogDemo {
     public static void main(String[] args) {
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();

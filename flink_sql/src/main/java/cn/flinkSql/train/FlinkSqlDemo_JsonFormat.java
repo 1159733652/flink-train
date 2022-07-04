@@ -8,7 +8,7 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
  * @Date 2022/6/28
  * @DESC jsonformat 详解
  */
-public class JsonFormatDemo {
+public class FlinkSqlDemo_JsonFormat {
     public static void main(String[] args) {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);

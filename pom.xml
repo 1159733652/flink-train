@@ -11,6 +11,7 @@
     <modules>
         <module>flink_demo</module>
         <module>flink_sql</module>
+        <module>util_function</module>
     </modules>
 
     <properties>

@@ -22,7 +22,7 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
  *  高级嵌套
  *  {"id":1,"name":{"formal":"zs","nick":"tiedan"},"age":18,"gender":"male"}
  */
-public class FlinkSqlDemo2_Exercise {
+public class FlinkSqlDemo_Exercise {
     public static void main(String[] args) {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);

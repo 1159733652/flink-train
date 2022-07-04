@@ -24,7 +24,7 @@ import org.apache.kafka.clients.consumer.OffsetResetStrategy;
  * @Date 2022/6/27
  * @DESC 各种表对象的创建的办法
  */
-public class FlinkSqlDemo2_TableObjectCreate {
+public class FlinkSqlDemo_TableObjectCreate {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);

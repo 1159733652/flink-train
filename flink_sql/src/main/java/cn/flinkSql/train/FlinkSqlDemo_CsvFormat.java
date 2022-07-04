@@ -8,7 +8,7 @@ import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
  * @Date 2022/6/29
  * @DESC    csv格式代码示例
  */
-public class CsvFormatDemo {
+public class FlinkSqlDemo_CsvFormat {
     public static void main(String[] args) {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
