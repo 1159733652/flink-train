@@ -22,7 +22,6 @@ public class FlinkSqlDemo_TimeWindow {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
         StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
-
         // 得到数据流
         DataStreamSource<String> source1 = env.socketTextStream("192.168.136.130", 9999);
 
@@ -54,7 +53,7 @@ public class FlinkSqlDemo_TimeWindow {
                 .column("price", DataTypes.DOUBLE())
                 .column("item", DataTypes.STRING())
                 .column("supplier_id", DataTypes.STRING())
-                .columnByExpression("rt",$("bidtime").toTimestamp())
+                .columnByExpression("rt", $("bidtime").toTimestamp())
                 .watermark("rt", "rt - interval '1' second")
                 .build());// 注册了sql表名，后续可以用sql语句查询
 
@@ -81,12 +80,46 @@ public class FlinkSqlDemo_TimeWindow {
 
         // 查询 ;每俩分钟，计算总交易总额  累加窗口
         // 超过步长重新计算
-        tableEnv.executeSql("select " +
+        /*tableEnv.executeSql("select " +
                 "window_start,window_end,sum(price) as price_amt    "   +
                 "from table (   " +
                 "cumulate(table t_bid,descriptor(rt),interval '2' minutes, interval '24' hour   )   " +// 参数：指定表名，指定时间，步长，最大长度
                 ")  " +
-                "group by window_start,window_end").print();
+                "group by window_start,window_end").print();*/
+
+        // 每十分钟计算一次，最近十分钟内交易总额最大的三个供应商及其交易参数
+        /**
+         *          * 2020-04-15 08:07:00.000,2.00,A,supplier1
+         *          * 2020-04-15 08:09:00.000,5.00,D,supplier2
+         *          * 2020-04-15 08:11:00.000,3.00,B,supplier2
+         *          * 2020-04-15 08:13:00.000,1.00,E,supplier1
+         *          * 2020-04-15 08:17:00.000,6.00,F,supplier2
+         *          * 2020-04-15 08:19:00.000,2.00,G,supplier3
+         *          * 2020-04-15 08:21:00.000,5.00,H,supplier1
+         *          * 2020-04-15 08:23:00.000,3.00,E,supplier3
+         *          * 2020-04-15 08:25:00.000,1.00,Q,supplier3
+         *          * 2020-04-15 08:27:00.000,6.00,R,supplier2
+         */
+        tableEnv.executeSql(
+                "select " +
+                        "  *  " +
+                        "   from  (  " +
+                        "   select " +
+                        "* over(partition by window_start,window_end order by price_amt desc) as rn " +
+                        "from (" +
+                        "select " +
+                        "window_start," +
+                        "window_end," +
+                        "sum(price) as price_amt," +
+                        "supplier_id," +
+                        "couunt(supplier_id) as big_cnt    " +
+                        "from table (   " +
+                        "tumblr(table t_bid,descriptor(rt),interval '10' minutes   )   " +// 参数：指定表名，指定时间，步长
+                        ")  " +
+                        "group by window_start,window_end,supplier_id" +
+                        ")" +
+                        ")" +
+                        "where rn <= 2").print();
 
     }
 }
